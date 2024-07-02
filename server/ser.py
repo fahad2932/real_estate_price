@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/get_location_names')
 def get_location_names():
     response = jsonify({
-        'locations' : utility.get_location_names()
+        'locations' : utility.get_locations_name()
     })
     response.headers.add('Access-Control-Allow-Origin','*')
 
@@ -16,11 +16,11 @@ def get_location_names():
 def predict_home_price():
     total_sqft = float(request.form['total_sqft'])
     location = request.form['location']
-    bedrooms = int(request.form['bedrooms'])
+    bedrooms = int(request.form['bhk'])
     bath = int(request.form['bath'])
 
     response = jsonify({
-        'estimated_price': util.get_estimated_price(location,total_sqft,bedrooms,bath)
+        'estimated_price': utility.get_estimate(location,total_sqft,bedrooms,bath)
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
 

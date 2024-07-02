@@ -1,6 +1,6 @@
 import pickle
 import numpy as np
-
+import json
 __location = None
 __data_columns = None
 __model = None
@@ -30,10 +30,11 @@ def load_data():
     with open("./artifacts/columns.json",'r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
-    with open("./artifacts/prediction.pickle",'rb') as f:
+    with open("./artifacts/prediction",'rb') as f:
        __model = pickle.load(f)
         
 if __name__ == "__main__":
-    load-data()
-    print(get_location_name())
+    load_data()
+    print(get_locations_name())
+    print(get_estimate('Ejipura',1000,2,2))
 
